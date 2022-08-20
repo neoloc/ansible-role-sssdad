@@ -1,0 +1,9 @@
+---
+galaxy_info:
+  role_name: sssdad
+  author: neoloc
+  description: install sssd and join active directory domain
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.4
+  github_branch: master
+

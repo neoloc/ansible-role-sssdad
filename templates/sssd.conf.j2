@@ -1,0 +1,18 @@
+[sssd]
+domains = {{ sssdad_realm }}
+config_file_version = 2
+services = nss, pam
+
+[domain/{{ sssdad_realm }}]
+default_shell = {{ sssdad_conf_default_shell }}
+krb5_store_password_if_offline = True
+cache_credentials = True
+krb5_realm = {{ sssdad_realm|upper }}
+realmd_tags = manages-system joined-with-adcli
+id_provider = ad
+fallback_homedir = {{ sssdad_conf_fallback_homedir }}
+ad_domain = {{ sssdad_realm }}
+use_fully_qualified_names = False
+ldap_id_mapping = True
+access_provider = ad
+{% if sssdad_conf_ad_gpo_ignore_unreadable is defined and sssdad_conf_ad_gpo_ignore_unreadable %}ad_gpo_ignore_unreadable = True{% else %}ad_gpo_ignore_unreadable = False{% endif %}

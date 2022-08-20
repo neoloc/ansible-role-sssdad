@@ -1,0 +1,44 @@
+---
+# tasks file for role
+#
+- name: install sssd-ad packages
+  package:
+    name: "{{ sssdad_packages }}"
+    state: present
+  tags: [ sssd ]
+  when: sssdad_configure == True
+
+- name: check if domain is joined
+  ansible.builtin.shell: "{{ sssdad_path_realm }} list | grep {{ sssdad_realm }} > /dev/null"
+  register: realm_joined
+  tags: [ sssd ]
+  when: sssdad_configure == True
+  failed_when: realm_joined.rc >= 2
+
+- name: join the domain
+  ansible.builtin.shell: "echo '{{ sssdad_pass }}' | {{ sssdad_path_realm }} join {{ sssdad_realm }} --user={{ sssdad_user }}"
+  tags: [ sssd ]
+  when:
+    - sssdad_configure == True
+    - realm_joined.rc == 1
+
+- name: update pam.d common-session
+  template:
+    src: pam_common_session.j2
+    dest: /etc/pam.d/common-session
+    owner: root
+    group: root
+    mode: '644'
+  tags: [ sssd ]
+  when: sssdad_configure == True
+
+- name: update sssd config
+  template:
+    src: sssd.conf.j2
+    dest: /etc/sssd/sssd.conf
+    owner: root
+    group: root
+    mode: '600'
+  tags: [ sssd ]
+  when: sssdad_configure == True
+  notify: restart sssd

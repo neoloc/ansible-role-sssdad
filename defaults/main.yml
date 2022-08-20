@@ -1,0 +1,24 @@
+---
+# defaults file for role
+
+sssdad_configure: false
+sssdad_packages:
+  - realmd
+  - sssd
+  - sssd-tools
+  - libnss-sss
+  - libpam-sss
+  - adcli
+  - samba-common-bin
+  - oddjob
+  - oddjob-mkhomedir
+  - packagekit
+
+sssdad_path_realm: /usr/sbin/realm
+sssdad_realm: somedomain.tld
+sssdad_user: admin_user
+sssdad_pass: admin_password
+
+sssdad_conf_default_shell: /bin/bash
+sssdad_conf_fallback_homedir: /home/%d/%u
+sssdad_conf_ad_gpo_ignore_unreadable: true
