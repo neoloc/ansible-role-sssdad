@@ -14,7 +14,7 @@ None
 Role Variables
 --------------
 
-Refer to default/main.yml file.
+refer to default/main.yml file.
 
 ```yaml
 sssdad_configure: true
@@ -26,7 +26,7 @@ sssdad_conf_fallback_homedir: /home/%d/%u
 sssdad_conf_ad_gpo_ignore_unreadable: true
 ```
 
-It is recommended to use a vault password for the sssd_user and sssd_pass variables.
+It is recommended to use a vault password for the sssdad_user and sssdad_pass variables.
 
 Example Playbook
 ----------------

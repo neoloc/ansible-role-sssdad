@@ -22,3 +22,4 @@ sssdad_pass: admin_password
 sssdad_conf_default_shell: /bin/bash
 sssdad_conf_fallback_homedir: /home/%d/%u
 sssdad_conf_ad_gpo_ignore_unreadable: true
+#sssdad_conf_ad_access_filter: (&(memberOf=cn=admins,ou=groups,dc=example,dc=com)(unixHomeDirectory=*))

@@ -16,3 +16,4 @@ use_fully_qualified_names = False
 ldap_id_mapping = True
 access_provider = ad
 {% if sssdad_conf_ad_gpo_ignore_unreadable is defined and sssdad_conf_ad_gpo_ignore_unreadable %}ad_gpo_ignore_unreadable = True{% else %}ad_gpo_ignore_unreadable = False{% endif %}
+{% if sssdad_conf_ad_access_filter is defined %}ad_access_filter = {{ sssdad_conf_ad_access_filter }}{% endif %}
